@@ -1,11 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import Details from "./Details";
 
 const Content = ({ movieInfo }) => {
+  const [imageError, setImageError] = useState(false);
   return (
     <div className="movie-details__content">
       <div className="movie-details__poster--wrapper">
-        <img src={movieInfo.Poster} alt="" className="movie-details__poster" />
+        {movieInfo.Poster === "N/A" || imageError ? (
+          <>
+            <div class="movie-details__poster-placeholder">
+              Movie Poster
+              <br />
+              Not Available
+            </div>
+          </>
+        ) : (
+          <>
+            <img
+              src={movieInfo.Poster}
+              alt=""
+              className="movie-details__poster"
+              onError={() => setImageError(true)}
+            />
+          </>
+        )}
         <div className="movie-details__info">
           <h1 className="movie-details__title"> {movieInfo.Title}</h1>
           <p className="movie-details__year">
