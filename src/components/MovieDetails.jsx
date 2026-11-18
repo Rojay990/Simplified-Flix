@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons/faArrowLeft";
@@ -12,7 +12,7 @@ const MovieDetails = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
-  async function imdbInfo() {
+  const imdbInfo = useCallback(async () => {
     setIsLoading(true);
     setError("");
 
@@ -32,11 +32,11 @@ const MovieDetails = () => {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [imdbID]);
 
   useEffect(() => {
     imdbInfo();
-  }, []);
+  }, [imdbInfo]);
   return (
     <div className="main">
       <div className="movie-details__container">

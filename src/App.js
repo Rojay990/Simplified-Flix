@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home";
 import Layout from "./components/Layout";
-import MovieDetails from "./pages/MovieDetails";
+import MovieDetails from "./components/MovieDetails";
 
 function App() {
   const [search, setSearch] = useState("Avengers");

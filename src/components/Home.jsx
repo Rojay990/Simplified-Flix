@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 import MovieCard from "./MovieCard";
@@ -13,7 +13,7 @@ const Home = ({
 }) => {
   const [isLoading, setIsLoading] = useState(true);
 
-  async function searchMovies() {
+  const searchMovies = useCallback(async () => {
     setIsLoading(true);
 
     try {
@@ -33,7 +33,7 @@ const Home = ({
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [search, setMovies, setOriginalMovies]);
 
   function movieFilter(movieList, filterValue) {
     if (filterValue === "a-z") {
@@ -78,8 +78,10 @@ const Home = ({
   }
 
   useEffect(() => {
-    searchMovies();
-  }, [search]);
+    if (search.trim()) {
+      searchMovies();
+    }
+  }, [search, searchMovies]);
 
   return (
     <>
