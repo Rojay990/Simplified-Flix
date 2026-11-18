@@ -18,7 +18,7 @@ const Home = ({
 
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?s=${search}&apikey=e9e36ef2`,
+        `https://www.omdbapi.com/?s=${search}&apikey=e9e36ef2`,
       );
 
       const searchMovies = data.Search || [];

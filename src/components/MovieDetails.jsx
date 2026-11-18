@@ -18,7 +18,7 @@ const MovieDetails = () => {
 
     try {
       const { data } = await axios.get(
-        `http://www.omdbapi.com/?i=${imdbID}&apikey=e9e36ef2`,
+        `https://www.omdbapi.com/?i=${imdbID}&apikey=e9e36ef2`,
       );
 
       if (data.Response === "False") {
